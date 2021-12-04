@@ -5,6 +5,9 @@
   "bugs": {
     "url": "https://github.com/marubase/container/issues"
   },
+  "files": [
+    "build/"
+  ],
   "funding": "https://ko-fi.com/endyjasmi",
   "homepage": "https://github.com/marubase/container",
   "keywords": [
@@ -27,9 +30,9 @@
       "types": "./build/types/index.d.ts"
     },
     "./*": {
-      "import": "./build/module/*.js",
-      "require": "./build/commonjs/*.js",
-      "types": "./build/types/*.d.ts"
+      "import": "./build/module/*",
+      "require": "./build/commonjs/*",
+      "types": "./build/types/*"
     },
     "./package.json": "./package.json"
   },
