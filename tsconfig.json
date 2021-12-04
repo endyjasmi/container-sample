@@ -1,5 +1,5 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
-  "files": ["global.d.ts", "jest.config.ts"],
-  "include": ["source/**/*"]
+  "compilerOptions": { "sourceMap": true },
+  "include": ["global.d.ts", "jest.config.ts", "source/**/*"]
 }

@@ -1,10 +1,11 @@
-import type { Config } from "@jest/types";
+import type { InitialOptionsTsJest } from "ts-jest/dist/types";
 
-const config: Config.InitialOptions = {
+const config: InitialOptionsTsJest = {
   collectCoverage: true,
   coverageReporters: ["lcov", "text"],
   preset: "ts-jest",
   resolver: "ts-jest-resolver",
+  roots: ["<rootDir>/source/"],
   setupFilesAfterEnv: ["jest-extended/all"],
 };
 export default config;

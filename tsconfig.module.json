@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "outDir": "build/module"
+  },
+  "exclude": ["global.d.ts", "jest.config.ts", "source/**/*.test.ts"]
+}
