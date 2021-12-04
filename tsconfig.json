@@ -1,4 +1,5 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
+  "files": ["global.d.ts", "jest.config.ts"],
   "include": ["source/**/*"]
 }
