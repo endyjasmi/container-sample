@@ -1,0 +1,18 @@
+{
+  "editor.codeActionsOnSave": ["source.organizeImports"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "eslint.validate": ["javascript", "typescript"],
+  "explorer.autoReveal": false,
+  "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "jest.jestCommandLine": "npm test --",
+  "jest.rootPath": "source",
+  "typescript.preferences.importModuleSpecifierEnding": "js"
+}

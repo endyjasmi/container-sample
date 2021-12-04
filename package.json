@@ -42,7 +42,7 @@
     "clean:build": "del-cli build",
     "clean:test": "del-cli coverage",
     "lint": "eslint --ext .ts,.tsx source",
-    "prepare": "npm run clean && npm test && npm run build",
+    "prepare": "npm run clean && npm run lint && npm test && npm run build",
     "test": "jest"
   },
   "devDependencies": {
