@@ -1,5 +1,23 @@
 {
   "name": "@marubase/container",
-  "type": "commonjs",
-  "version": "0.0.0"
+  "description": "Marubase's dependency injection manager.",
+  "version": "0.0.0",
+  "bugs": {
+    "url": "https://github.com/marubase/container/issues"
+  },
+  "funding": {
+    "url": "https://ko-fi.com/endyjasmi",
+    "type": "individual"
+  },
+  "homepage": "https://github.com/marubase/container",
+  "keywords": [
+    "dependency injection",
+    "inversion of control"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "github:marubase/container",
+  "type": "commonjs"
 }
