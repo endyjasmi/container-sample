@@ -5,10 +5,7 @@
   "bugs": {
     "url": "https://github.com/marubase/container/issues"
   },
-  "funding": {
-    "url": "https://ko-fi.com/endyjasmi",
-    "type": "individual"
-  },
+  "funding": "https://ko-fi.com/endyjasmi",
   "homepage": "https://github.com/marubase/container",
   "keywords": [
     "dependency injection",
@@ -38,13 +35,14 @@
   },
   "scripts": {
     "build": "npm run build:commonjs && npm run build:module && npm run build:types",
-    "build:commonjs": "tsc --project tsconfig.commonjs.json",
-    "build:module": "tsc --project tsconfig.module.json",
+    "build:commonjs": "tsc --project tsconfig.commonjs.json && echo '{\"type\":\"commonjs\"}' > build/commonjs/package.json",
+    "build:module": "tsc --project tsconfig.module.json && echo '{\"type\":\"module\"}' > build/module/package.json",
     "build:types": "tsc --project tsconfig.types.json",
     "clean": "npm run clean:build && npm run clean:test",
     "clean:build": "del-cli build",
     "clean:test": "del-cli coverage",
     "lint": "eslint --ext .ts,.tsx source",
+    "prepare": "npm run clean && npm test && npm run build",
     "test": "jest"
   },
   "devDependencies": {
