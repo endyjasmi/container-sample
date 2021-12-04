@@ -19,5 +19,18 @@
     "access": "public"
   },
   "repository": "github:marubase/container",
-  "type": "commonjs"
+  "type": "commonjs",
+  "scripts": {
+    "lint": "eslint --ext .ts,.tsx source"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.4.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2"
+  }
 }
