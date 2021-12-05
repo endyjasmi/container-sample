@@ -1,7 +1,7 @@
 {
   "name": "@marubase/container",
   "description": "Marubase's dependency injection manager.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "bugs": {
     "url": "https://github.com/marubase/container/issues"
   },
