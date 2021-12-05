@@ -11,8 +11,8 @@ export class Scope<ScopeValue> implements ScopeInterface<ScopeValue> {
   protected _parent?: Scope<ScopeValue>;
   protected _record: ScopeRecord<ScopeValue | undefined> = {};
 
-  public constructor(parent?: Scope<ScopeValue>) {
-    this._parent = parent;
+  public constructor(parent?: ScopeInterface<ScopeValue>) {
+    this._parent = parent as Scope<ScopeValue>;
   }
 
   public get parent(): this | undefined {
