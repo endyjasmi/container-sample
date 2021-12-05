@@ -6,6 +6,6 @@ const config: InitialOptionsTsJest = {
   preset: "ts-jest",
   resolver: "ts-jest-resolver",
   roots: ["<rootDir>/source/"],
-  setupFilesAfterEnv: ["jest-extended/all"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
 export default config;

@@ -4,5 +4,5 @@
     "module": "CommonJS",
     "outDir": "build/commonjs"
   },
-  "exclude": ["global.d.ts", "jest.config.ts", "source/**/*.test.ts"]
+  "exclude": ["jest.config.ts", "jest.setup.ts", "source/**/*.test.ts"]
 }

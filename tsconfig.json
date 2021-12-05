@@ -1,5 +1,9 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
-  "compilerOptions": { "sourceMap": true },
-  "include": ["global.d.ts", "jest.config.ts", "source/**/*"]
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true
+  },
+  "include": ["jest.config.ts", "jest.setup.ts", "source/**/*"]
 }

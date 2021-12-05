@@ -10,6 +10,7 @@
   "parserOptions": { "project": "./tsconfig.json" },
   "root": true,
   "rules": {
-    "@typescript-eslint/explicit-member-accessibility": "error"
+    "@typescript-eslint/explicit-member-accessibility": "error",
+    "@typescript-eslint/ban-types": "off"
   }
 }
