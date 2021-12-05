@@ -1,4 +1,13 @@
-export class Scope<ScopeValue> {
+import {
+  ScopeEntries,
+  ScopeEntry,
+  ScopeInterface,
+  ScopeKey,
+  ScopeKeys,
+  ScopeRecord,
+} from "./contracts/scope.contract.js";
+
+export class Scope<ScopeValue> implements ScopeInterface<ScopeValue> {
   protected _parent?: Scope<ScopeValue>;
   protected _record: ScopeRecord<ScopeValue | undefined> = {};
 
@@ -70,13 +79,3 @@ export class Scope<ScopeValue> {
       : Object.assign({}, this._record);
   }
 }
-
-export type ScopeEntries<ScopeValue> = Array<ScopeEntry<ScopeValue>>;
-
-export type ScopeEntry<ScopeValue> = [ScopeKey, ScopeValue];
-
-export type ScopeKey = string | symbol;
-
-export type ScopeKeys = Array<ScopeKey>;
-
-export type ScopeRecord<ScopeValue> = Record<ScopeKey, ScopeValue>;
