@@ -1,6 +1,3 @@
-export class ScopeError extends Error {
-  public constructor(message: string) {
-    super(message);
-    this.name = this.constructor.name;
-  }
-}
+import { BaseError } from "./base-error.js";
+
+export class ScopeError extends BaseError {}
