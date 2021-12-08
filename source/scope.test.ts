@@ -1,4 +1,4 @@
-import { ScopeType } from "./contracts.js";
+import { ScopeType } from "./contracts/scope.js";
 import { Scope } from "./scope.js";
 
 describe("Scope", () => {
