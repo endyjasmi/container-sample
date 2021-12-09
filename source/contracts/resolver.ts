@@ -7,11 +7,11 @@ export interface ResolverInterface {
   readonly registry: RegistryInterface;
   readonly scope: ResolverScope;
   readonly tags: ResolverTags;
-  resolve<Instance>(scope: ScopeInterface, ...params: unknown[]): Instance;
   resetDependencies(): this;
   resetKey(): this;
   resetScope(): this;
   resetTags(): this;
+  resolve<Instance>(scope: ScopeInterface, ...params: unknown[]): Instance;
   setDependencies(dependencies: ResolverDependencies): this;
   setKey(key: ResolverKey): this;
   setScope(scope: ResolverScope): this;
