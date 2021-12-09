@@ -1,12 +1,12 @@
 export interface ScopeInterface {
-  readonly parent?: ScopeInterface;
+  readonly parent?: this;
   readonly type: ScopeType;
   clear(key: ScopeKey): this;
   fork(type: ScopeType): this;
   get(key: ScopeKey): unknown;
   has(key: ScopeKey): boolean;
   set(key: ScopeKey, value: unknown): this;
-  to(type: ScopeTo): ScopeInterface;
+  to(type: ScopeTo): this;
 }
 
 export type ScopeConstructor = {
