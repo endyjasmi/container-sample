@@ -12,7 +12,7 @@ export class Scope implements ScopeInterface {
 
   protected _type: ScopeType;
 
-  public constructor(type: ScopeType, parent?: Scope) {
+  public constructor(type: ScopeType, parent?: ScopeInterface) {
     this._parent = parent as this;
     this._type = type;
   }
