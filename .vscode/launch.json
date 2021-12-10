@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "name": "Launch Program",
+      "program": "${relativeFile}",
+      "request": "launch",
+      "runtimeArgs": ["--loader=ts-node/esm", "--no-warnings"],
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
+      "args": ["test", "--", "--runInBand", "--watchAll=false"],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "cwd": "${workspaceFolder}/source",
+      "disableOptimisticBPs": true,
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "type": "node"
+    }
+  ]
+}

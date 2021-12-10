@@ -14,5 +14,6 @@
   "javascript.preferences.importModuleSpecifierEnding": "js",
   "jest.jestCommandLine": "npm test --",
   "jest.rootPath": "source",
+  "jest.showCoverageOnLoad": true,
   "typescript.preferences.importModuleSpecifierEnding": "js"
 }

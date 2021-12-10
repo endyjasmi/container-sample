@@ -3,7 +3,14 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "sourceMap": true
   },
-  "include": ["jest.config.ts", "jest.setup.ts", "source/**/*"]
+  "include": ["jest.config.ts", "jest.setup.ts", "source/**/*"],
+  "ts-node": {
+    "moduleTypes": {
+      "jest.config.ts": "cjs"
+    }
+  }
 }
