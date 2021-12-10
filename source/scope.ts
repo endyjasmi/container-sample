@@ -1,8 +1,8 @@
 import {
   ScopeInterface,
   ScopeKey,
-  ScopeTo,
   ScopeType,
+  WalkType,
 } from "./contracts/scope.js";
 
 export class Scope implements ScopeInterface {
@@ -17,15 +17,7 @@ export class Scope implements ScopeInterface {
     this._type = type;
   }
 
-  public get parent(): this | undefined {
-    return this._parent;
-  }
-
-  public get type(): ScopeType {
-    return this._type;
-  }
-
-  public clear(key: ScopeKey): this {
+  public clearRecord(key: ScopeKey): this {
     if (typeof this._parent !== "undefined") this._record[key] = undefined;
     else delete this._record[key];
     return this;
@@ -36,36 +28,48 @@ export class Scope implements ScopeInterface {
     return new Static(type, this) as this;
   }
 
-  public get(key: ScopeKey): unknown {
+  public getParent(): this | undefined {
+    return this._parent;
+  }
+
+  public getRecord(key: ScopeKey): unknown {
     if (key in this._record) return this._record[key];
     return typeof this._parent !== "undefined"
-      ? this._parent.get(key)
+      ? this._parent.getRecord(key)
       : undefined;
   }
 
-  public has(key: ScopeKey): boolean {
-    if (key in this._record) return typeof this._record[key] !== "undefined";
-    return typeof this._parent !== "undefined" ? this._parent.has(key) : false;
+  public getType(): ScopeType {
+    return this._type;
   }
 
-  public set(key: ScopeKey, value: unknown): this {
+  public hasRecord(key: ScopeKey): boolean {
+    if (key in this._record) return typeof this._record[key] !== "undefined";
+    return typeof this._parent !== "undefined"
+      ? this._parent.hasRecord(key)
+      : false;
+  }
+
+  public setRecord(key: ScopeKey, value: unknown): this {
     this._record[key] = value;
     return this;
   }
 
-  public to(type: ScopeTo): this {
-    switch (type) {
+  public walkTo(walkType: WalkType): this {
+    switch (walkType) {
       case "container":
         if (typeof this._parent === "undefined") return this;
-        return this._type !== "container" ? this._parent.to(type) : this;
+        return this._type !== "container"
+          ? this._parent.walkTo(walkType)
+          : this;
       case "request":
         if (typeof this._parent === "undefined") return this;
         return this._parent._type !== "container"
-          ? this._parent.to(type)
+          ? this._parent.walkTo(walkType)
           : this;
       case "singleton":
         return typeof this._parent !== "undefined"
-          ? this._parent.to(type)
+          ? this._parent.walkTo(walkType)
           : this;
       default:
         return this;

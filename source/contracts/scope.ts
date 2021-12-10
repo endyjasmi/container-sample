@@ -1,12 +1,12 @@
 export interface ScopeInterface {
-  readonly parent?: this;
-  readonly type: ScopeType;
-  clear(key: ScopeKey): this;
+  clearRecord(key: ScopeKey): this;
   fork(type: ScopeType): this;
-  get(key: ScopeKey): unknown;
-  has(key: ScopeKey): boolean;
-  set(key: ScopeKey, value: unknown): this;
-  to(type: ScopeTo): this;
+  getParent(): this | undefined;
+  getRecord(key: ScopeKey): unknown;
+  getType(): ScopeType;
+  hasRecord(key: ScopeKey): boolean;
+  setRecord(key: ScopeKey, value: unknown): this;
+  walkTo(walkType: WalkType): this;
 }
 
 export type ScopeConstructor = {
@@ -16,6 +16,6 @@ export type ScopeConstructor = {
 
 export type ScopeKey = string | symbol;
 
-export type ScopeTo = "container" | "request" | "singleton" | "transient";
-
 export type ScopeType = "container" | "request";
+
+export type WalkType = "container" | "request" | "singleton" | "transient";

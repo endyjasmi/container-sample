@@ -2,11 +2,11 @@ import { RegistryInterface } from "./registry.js";
 import { ScopeInterface } from "./scope.js";
 
 export interface ResolverInterface {
-  readonly dependencies: ResolverDependencies;
-  readonly key?: ResolverKey;
-  readonly registry: RegistryInterface;
-  readonly scope: ResolverScope;
-  readonly tags: ResolverTags;
+  getDependencies(): ResolverDependencies;
+  getKey(): ResolverKey | undefined;
+  getRegistry(): RegistryInterface;
+  getScope(): ResolverScope;
+  getTags(): ResolverTags;
   resetDependencies(): this;
   resetKey(): this;
   resetScope(): this;

@@ -6,61 +6,69 @@ import { Scope } from "../scope.js";
 import { BaseResolver } from "./base-resolver.js";
 
 describe("BaseResolver", () => {
-  let registry: RegistryInterface;
+  let mockRegistry: RegistryInterface;
   let resolver: BaseResolver;
-  beforeEach(() => (registry = mock<RegistryInterface>()));
-  beforeEach(() => (resolver = new BaseResolver(registry)));
-  afterEach(() => mockReset(registry) as unknown);
+  beforeEach(() => (mockRegistry = mock<RegistryInterface>()));
+  beforeEach(() => (resolver = new BaseResolver(mockRegistry)));
+  afterEach(() => mockReset(mockRegistry) as unknown);
 
-  describe("get dependencies()", () => {
+  describe("getDependencies()", () => {
     describe.each([Boolean, "dependency", Symbol("dependency")])(
       "when there is %p as dependency",
       (dependency) => {
         beforeEach(() => resolver.setDependencies([dependency]));
         it("should returns dependencies", () => {
-          expect(resolver.dependencies).toEqual([dependency]);
+          const dependencies = resolver.getDependencies();
+          expect(dependencies).toEqual([dependency]);
         });
       },
     );
   });
 
-  describe("get key()", () => {
+  describe("getKey()", () => {
     describe.each(["key", Symbol("key"), undefined])(
       "when there is %p as key",
-      (key) => {
-        beforeEach(() => resolver.setKey(key as ResolverKey));
+      (resolverKey) => {
+        beforeEach(() => resolver.setKey(resolverKey as ResolverKey));
         it("should returns key", () => {
-          expect(resolver.key).toEqual(key);
+          const key = resolver.getKey();
+          expect(key).toEqual(resolverKey);
         });
       },
     );
   });
 
-  describe("get registry()", () => {
+  describe("getRegistry()", () => {
     it("should returns registry", () => {
-      expect(resolver.registry).toBe(registry);
+      const registry = resolver.getRegistry();
+      expect(registry).toBe(mockRegistry);
     });
   });
 
-  describe("get scope()", () => {
+  describe("getScope()", () => {
     describe.each(["container", "request", "singleton", "transient"])(
       "when there is %p as scope",
-      (scope) => {
-        beforeEach(() => resolver.setScope(scope as ResolverScope));
-        it(`should returns "${scope}"`, () => {
-          expect(resolver.scope).toBe(scope);
+      (resolverScope) => {
+        beforeEach(() => resolver.setScope(resolverScope as ResolverScope));
+        it(`should returns "${resolverScope}"`, () => {
+          const scope = resolver.getScope();
+          expect(scope).toBe(resolverScope);
         });
       },
     );
   });
 
-  describe("get tags()", () => {
-    describe.each(["tag", Symbol("tag")])("when there is %p as tag", (tag) => {
-      beforeEach(() => resolver.setTags([tag]));
-      it("should returns tags", () => {
-        expect(resolver.tags).toEqual([tag]);
-      });
-    });
+  describe("getTags()", () => {
+    describe.each(["tag", Symbol("tag")])(
+      "when there is %p as tag",
+      (resolverTag) => {
+        beforeEach(() => resolver.setTags([resolverTag]));
+        it("should returns tags", () => {
+          const tags = resolver.getTags();
+          expect(tags).toEqual([resolverTag]);
+        });
+      },
+    );
   });
 
   describe("resolve(scope, ...params)", () => {
@@ -69,8 +77,8 @@ describe("BaseResolver", () => {
 
     describe.each(["key", Symbol("key"), undefined])(
       "when there is %p as key",
-      (key) => {
-        beforeEach(() => resolver.setKey(key as ResolverKey));
+      (resolverKey) => {
+        beforeEach(() => resolver.setKey(resolverKey as ResolverKey));
 
         describe.each(["container", "request", "singleton", "transient"])(
           "and there is %p as scope",
@@ -78,9 +86,14 @@ describe("BaseResolver", () => {
             beforeEach(() => resolver.setScope(resolverScope as ResolverScope));
 
             if (resolverScope === "singleton")
-              beforeEach(() => scope.set(key as ResolverKey, true));
+              beforeEach(() =>
+                scope.setRecord(resolverKey as ResolverKey, true),
+              );
 
-            if (typeof key !== "undefined" && resolverScope === "singleton")
+            if (
+              typeof resolverKey !== "undefined" &&
+              resolverScope === "singleton"
+            )
               it("should returns instance", () => {
                 const instance = resolver.resolve(scope);
                 expect(instance).toBeTrue();

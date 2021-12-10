@@ -9,11 +9,11 @@ import {
 import { ScopeInterface } from "./scope.js";
 
 export interface ContainerInterface {
-  readonly registry: RegistryInterface;
-  readonly parent?: this;
-  readonly scope: ScopeInterface;
   bind(key: ResolverKey): ContainerBindSyntax;
   call<Result>(callable: Callable, ...params: unknown[]): Result;
+  getParent(): this | undefined;
+  getRegistry(): RegistryInterface;
+  getScope(): ScopeInterface;
   factory<Instance>(resolvable: Resolvable): ContainerFactory<Instance>;
   fork(): this;
   resolve<Instance>(resolvable: Resolvable, ...params: unknown[]): Instance;

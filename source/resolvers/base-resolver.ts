@@ -24,23 +24,23 @@ export class BaseResolver implements ResolverInterface {
     this._registry = registry;
   }
 
-  public get dependencies(): ResolverDependencies {
+  public getDependencies(): ResolverDependencies {
     return this._dependencies;
   }
 
-  public get key(): ResolverKey | undefined {
+  public getKey(): ResolverKey | undefined {
     return this._key;
   }
 
-  public get registry(): RegistryInterface {
+  public getRegistry(): RegistryInterface {
     return this._registry;
   }
 
-  public get scope(): ResolverScope {
+  public getScope(): ResolverScope {
     return this._scope;
   }
 
-  public get tags(): ResolverTags {
+  public getTags(): ResolverTags {
     return this._tags;
   }
 
@@ -76,12 +76,12 @@ export class BaseResolver implements ResolverInterface {
     if (typeof this._key === "undefined")
       return this._resolveRaw(currentScope, ...params);
 
-    const activeScope = currentScope.to(this._scope);
-    if (activeScope.has(this._key))
-      return activeScope.get(this._key) as Instance;
+    const activeScope = currentScope.walkTo(this._scope);
+    if (activeScope.hasRecord(this._key))
+      return activeScope.getRecord(this._key) as Instance;
     return activeScope
-      .set(this._key, this._resolveRaw(scope, ...params))
-      .get(this._key) as Instance;
+      .setRecord(this._key, this._resolveRaw(scope, ...params))
+      .getRecord(this._key) as Instance;
   }
 
   public setDependencies(dependencies: ResolverDependencies): this {
@@ -108,19 +108,22 @@ export class BaseResolver implements ResolverInterface {
     return this;
   }
 
+  protected _createError(problem: string, solution: string): void {
+    const context =
+      typeof this._key !== "undefined"
+        ? typeof this._key !== "string"
+          ? `Resolving '${this._key.toString()}' record.`
+          : `Resolving '${this._key}' record.`
+        : `Resolving keyless record.`;
+    throw new ResolverError(`${context} ${problem} ${solution}`);
+  }
+
   protected _resolveRaw<Instance>(
     scope: ScopeInterface,
     ...params: unknown[]
   ): Instance {
-    const resolverKey =
-      typeof this._key !== "undefined"
-        ? typeof this._key !== "string"
-          ? this._key.toString()
-          : this._key
-        : "undefined";
-    const context = `Resolving '${resolverKey}'.`;
-    const problem = `Failed to resolve.`;
-    const solution = "Method not implemented.";
-    throw new ResolverError(`${context} ${problem} ${solution}.`);
+    const problem = `Method not implemented.`;
+    const solution = `Please implement the method before invoke.`;
+    throw this._createError(problem, solution);
   }
 }
