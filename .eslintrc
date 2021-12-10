@@ -10,7 +10,38 @@
   "parserOptions": { "project": "./tsconfig.json" },
   "root": true,
   "rules": {
+    "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/explicit-member-accessibility": "error",
-    "@typescript-eslint/ban-types": "off"
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": {
+          "memberTypes": [
+            "public-field",
+            "private-field",
+            "protected-field",
+            "field",
+            "signature",
+            "public-constructor",
+            "private-constructor",
+            "protected-constructor",
+            "constructor",
+            "public-get",
+            "private-get",
+            "protected-get",
+            "get",
+            "public-set",
+            "private-set",
+            "protected-set",
+            "set",
+            "public-method",
+            "private-method",
+            "protected-method",
+            "method"
+          ],
+          "order": "alphabetically"
+        }
+      }
+    ]
   }
 }

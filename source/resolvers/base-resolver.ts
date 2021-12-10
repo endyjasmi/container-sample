@@ -119,8 +119,8 @@ export class BaseResolver implements ResolverInterface {
   }
 
   protected _resolveRaw<Instance>(
-    scope: ScopeInterface,
-    ...params: unknown[]
+    scope: ScopeInterface /* eslint-disable-line */,
+    ...params: unknown[] /* eslint-disable-line */
   ): Instance {
     const problem = `Method not implemented.`;
     const solution = `Please implement the method before invoke.`;
