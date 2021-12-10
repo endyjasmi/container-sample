@@ -19,12 +19,18 @@ export interface ResolverInterface {
 }
 
 export type Callable =
-  | [Object, CallableProperty]
-  | [Resolvable, CallableProperty]
+  | [Object, InstanceProperty]
+  | [Resolvable, InstanceProperty]
   | Function
   | string;
 
-export type CallableProperty = string | symbol;
+export type Constructor<Instance> = new (...params: unknown[]) => Instance;
+
+export type Instance<Result> = Record<InstanceProperty, Method<Result>>;
+
+export type InstanceProperty = string | symbol;
+
+export type Method<Result> = (...params: unknown[]) => Result;
 
 export type Resolvable = Function | ResolverKey;
 
@@ -44,7 +50,7 @@ export type AliasResolverConstructor = {
 };
 
 export type CallableResolverConstructor = {
-  (registry: RegistryInterface, callable: CallableProperty): ResolverInterface;
+  (registry: RegistryInterface, callable: Callable): ResolverInterface;
 };
 
 export type ClassResolverConstructor = {

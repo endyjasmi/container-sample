@@ -1,4 +1,5 @@
 import { RegistryInterface } from "../contracts/registry.js";
+import { Constructor } from "../contracts/resolver.js";
 import { ScopeInterface } from "../contracts/scope.js";
 import { BaseResolver } from "./base-resolver.js";
 
@@ -14,7 +15,7 @@ export class ClassResolver extends BaseResolver {
     scope: ScopeInterface,
     ...params: unknown[]
   ): Instance {
-    const target = this._constructor as new (...args: unknown[]) => Instance;
+    const target = this._constructor as Constructor<Instance>;
     const targetArgs = this._dependencies
       .map((dependency) => this._registry.resolve(dependency, scope))
       .concat(...params);
