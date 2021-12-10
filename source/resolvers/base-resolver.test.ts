@@ -103,7 +103,7 @@ describe("new BaseResolver(registry)", () => {
     describe("when there is no key", () => {
       it("should throw error", () => {
         const invoke = () => resolver.resolve(mockScope);
-        expect(invoke).toThrow(ResolverError);
+        expect(invoke).toThrowError(ResolverError);
       });
     });
 
