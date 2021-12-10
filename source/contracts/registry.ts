@@ -4,11 +4,13 @@ import {
   CallableResolverConstructor,
   ClassResolverConstructor,
   ConstantResolverConstructor,
+  Resolvable,
   ResolverInterface,
   ResolverKey,
   ResolverTag,
   TagResolverConstructor,
 } from "./resolver.js";
+import { ScopeInterface } from "./scope.js";
 
 export interface RegistryInterface {
   createAliasResolver(alias: ResolverKey): ResolverInterface;
@@ -22,6 +24,11 @@ export interface RegistryInterface {
   findByTag(tag: ResolverTag): ResolverInterface | undefined;
   indexKey(key: ResolverKey, resolver: ResolverInterface): this;
   indexTag(tag: ResolverTag, resolver: ResolverInterface): this;
+  resolve<Instance>(
+    resolvable: Resolvable,
+    scope: ScopeInterface,
+    ...params: unknown[]
+  ): Instance;
 }
 
 export type RegistryConstruct = {
