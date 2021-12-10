@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RegistryInterface } from "../contracts/registry.js";
 import {
   ResolverDependencies,
@@ -119,8 +120,8 @@ export class BaseResolver implements ResolverInterface {
   }
 
   protected _resolveRaw<Instance>(
-    scope: ScopeInterface /* eslint-disable-line */,
-    ...params: unknown[] /* eslint-disable-line */
+    scope: ScopeInterface,
+    ...params: unknown[]
   ): Instance {
     const problem = `Method not implemented.`;
     const solution = `Please implement the method before invoke.`;
